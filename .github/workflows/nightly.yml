@@ -1,0 +1,46 @@
+name: nightly
+
+# Same-day coverage from the EDGAR daily index. The quarterly Form 13F Data Set
+# only refreshes once per filing window, so nightly-append walks the daily index
+# from the last filing date present through today and merges new 13F-HR filings
+# (dedup by accession) into the matching report-period file.
+# 08:00 UTC weekdays = after SEC's overnight publishing.
+
+on:
+  schedule:
+    - cron: "0 8 * * 1-5"
+  workflow_dispatch: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write
+    env:
+      # SEC fetchers require a bare "<name> <email>" User-Agent (no URL/parens).
+      # Set the CONTACT_EMAIL secret; the fallback is a generic placeholder that
+      # SEC still accepts, so no personal address is baked into a public file.
+      FUNDSKIT_SEC_USER_AGENT: "fundskit ${{ secrets.CONTACT_EMAIL || 'contact@example.com' }}"
+      RUST_LOG: info
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Build CLI
+        run: cargo build --release --bin fundskit-cli
+      - name: Pull new filings
+        run: ./target/release/fundskit-cli nightly-append
+        continue-on-error: true
+      - name: Regenerate manifest
+        run: ./target/release/fundskit-cli manifest
+      - name: Commit if changed
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "github-actions"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+          else
+            git commit -m "chore(data): nightly $(date -u +%Y-%m-%d)"
+            git push
+          fi

@@ -1,0 +1,33 @@
+name: backfill
+
+on:
+  workflow_dispatch:
+    inputs:
+      quarters:
+        description: "Number of most-recent filing-window ZIPs to ingest"
+        required: false
+        default: "10"
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+    env:
+      FUNDSKIT_SEC_USER_AGENT: "fundskit ${{ secrets.CONTACT_EMAIL || 'contact@example.com' }}"
+      RUST_LOG: info
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Build CLI
+        run: cargo build --release --bin fundskit-cli
+      - name: Backfill
+        run: ./target/release/fundskit-cli backfill --quarters ${{ inputs.quarters }}
+      - name: Commit data
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "github-actions"
+          git add data/
+          git diff --cached --quiet || git commit -m "chore(data): backfill via workflow_dispatch"
+          git push
