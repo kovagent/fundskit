@@ -76,5 +76,5 @@
   "period=2025Q2/fund13f-2025Q2.parquet": "sha256:2fb447c58f5f15769e477d4a0d3d9e271dbc6b436cb5c466a0730433aa739ddf",
   "period=2025Q3/fund13f-2025Q3.parquet": "sha256:a641b6c5fd4cd20da39061b7bc43f2b183c37fd0c14b1db6e33b61edbda334f4",
   "period=2025Q4/fund13f-2025Q4.parquet": "sha256:b949661a1a5cafa2f011dd06fffaed9b8221258116edc9f916c58e84f5cccba4",
-  "period=2026Q1/fund13f-2026Q1.parquet": "sha256:16c922cd92ee51169e2a79b71ca601a2fa1d5b562293bafeb11aede38cd2d7e6"
+  "period=2026Q1/fund13f-2026Q1.parquet": "sha256:79a69b971d90175b77869086e1a5444349b3b8007f9a77aa7b526eafd199b53c"
 }
