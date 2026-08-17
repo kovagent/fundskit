@@ -75,7 +75,7 @@
   "period=2025Q1/fund13f-2025Q1.parquet": "sha256:0a92f6a63023fbbbc8d3d2d377f4ebd522535404dd8b7799f1646f3d1a6932ad",
   "period=2025Q2/fund13f-2025Q2.parquet": "sha256:d89306d1fdf32e60cb639819a4bf23e7b767010cb344ff83d486c090ccaa886f",
   "period=2025Q3/fund13f-2025Q3.parquet": "sha256:4a061152bcd31d38c41a450a987f4d2e1ddc938089d5dd5b28ccf8c7feafedec",
-  "period=2025Q4/fund13f-2025Q4.parquet": "sha256:042d661f28cba0b165667792429fc62e1b2b55970cfeaa853eddd03de97467ea",
-  "period=2026Q1/fund13f-2026Q1.parquet": "sha256:e00e5995f1bafd9dc3c3265e4db0bf3a51968c9ccb0fdd966b434417ca450ec2",
-  "period=2026Q2/fund13f-2026Q2.parquet": "sha256:7dbe4d79edfb234109f1cf5edd3cea53318f2f73371605a86dc9ae10591fb33b"
+  "period=2025Q4/fund13f-2025Q4.parquet": "sha256:17c2daa88b8eda5203614f421bdca9241cb38984ccef31a0f8206bdfdf23f378",
+  "period=2026Q1/fund13f-2026Q1.parquet": "sha256:c9cba2ab5bbb53acbfca8f53c80c4f600c58a9e1afdf5caf226811a75118c2fe",
+  "period=2026Q2/fund13f-2026Q2.parquet": "sha256:5be1a4fd3c6b72fa0d6f4513be1b81238dfa2c4559a1737f90ed58f46f91c226"
 }
